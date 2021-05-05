@@ -8,74 +8,74 @@ int buttonDown = 0;
 int slider1 = 50;
 int slider2 = 50;
 
-static void onMouse(int event, int x, int y, int flags, void*) //³B²z·Æ¹«¨Æ¥óªº¨ç¦¡
+static void onMouse(int event, int x, int y, int flags, void*) //è™•ç†æ»‘é¼ äº‹ä»¶çš„å‡½å¼
 {
 	switch (event) {
-	case EVENT_LBUTTONDOWN: //·Æ¹«¥ªÁä«ö¤U¨Æ¥ó
-		imshow("¤âÃ¸", im1); //¦b¤âÃ¸µøµ¡¨q¥Xim1
-		buttonDown = 1; //³]©wbuttonDown¬°1
+	case EVENT_LBUTTONDOWN: //æ»‘é¼ å·¦éµæŒ‰ä¸‹äº‹ä»¶
+		imshow("æ‰‹ç¹ª", im1); //åœ¨æ‰‹ç¹ªè¦–çª—ç§€å‡ºim1
+		buttonDown = 1; //è¨­å®šbuttonDownç‚º1
 		break;
-	case EVENT_LBUTTONUP: //·Æ¹«¥ªÁä¼u°_¨Æ¥ó
-		buttonDown = 0; //³]©wbuttonDown¬°0
+	case EVENT_LBUTTONUP: //æ»‘é¼ å·¦éµå½ˆèµ·äº‹ä»¶
+		buttonDown = 0; //è¨­å®šbuttonDownç‚º0
 		break;
-	case EVENT_MOUSEMOVE: //·Æ¹«²¾°Ê¨Æ¥ó
+	case EVENT_MOUSEMOVE: //æ»‘é¼ ç§»å‹•äº‹ä»¶
 		if (buttonDown) {
-			circle(im1, Point(x, y), 6, CV_RGB(255, 255, 255), -1, LINE_AA); //Ã¸»s¥b®|¬°6ªº¹ê¤ß¶ê°é
-			imshow("¤âÃ¸", im1); //¦b¤âÃ¸µøµ¡¨q¥Xim1
+			circle(im1, Point(x, y), 6, CV_RGB(255, 255, 255), -1, LINE_AA); //ç¹ªè£½åŠå¾‘ç‚º6çš„å¯¦å¿ƒåœ“åœˆ
+			imshow("æ‰‹ç¹ª", im1); //åœ¨æ‰‹ç¹ªè¦–çª—ç§€å‡ºim1
 		}
 		break;
-	case EVENT_RBUTTONUP: //·Æ¹«¥kÁä¼u°_¨Æ¥ó
-		destroyWindow("¤âÃ¸"); //Ãö³¬¤âÃ¸µøµ¡
+	case EVENT_RBUTTONUP: //æ»‘é¼ å³éµå½ˆèµ·äº‹ä»¶
+		destroyWindow("æ‰‹ç¹ª"); //é—œé–‰æ‰‹ç¹ªè¦–çª—
 		break;
 	}
 }
 
 void on_trackbar(int, void *) {
-	Mat dst, roi; //«Å§i¤@­Ó¿é¥X¼v¹³¸ò­n¶K¤Wªºroi
-	int new_cols, new_rows; //«Å§i©ñ¤jÁY¤p«á¹Ï¤ùªºªø¼e
-	if (slider2 == 0) slider2 = 1; //­Yslider2ªº­È¬°0 «h³]¦¨1
+	Mat dst, roi; //å®£å‘Šä¸€å€‹è¼¸å‡ºå½±åƒè·Ÿè¦è²¼ä¸Šçš„roi
+	int new_cols, new_rows; //å®£å‘Šæ”¾å¤§ç¸®å°å¾Œåœ–ç‰‡çš„é•·å¯¬
+	if (slider2 == 0) slider2 = 1; //è‹¥slider2çš„å€¼ç‚º0 å‰‡è¨­æˆ1
 
-	new_cols = int(im2.cols*slider2 / 100.0); //­pºâ·sªºcol
-	new_rows = int(im2.rows*slider2 / 100.0); //­pºâ·sªºrow
+	new_cols = int(im2.cols*slider2 / 100.0); //è¨ˆç®—æ–°çš„col
+	new_rows = int(im2.rows*slider2 / 100.0); //è¨ˆç®—æ–°çš„row
 
-	im3.create(im2.rows, im2.cols, CV_8UC3); //«Ø¥ß¤@­Ó¸òim2¤@¼Ë¤j¤pªºim3
-	im3.setTo(0); //im3©³¦â³]¦¨¶Â¦â
-	resize(im1, roi, Size(new_cols, new_rows)); //resize im1¨ìroi¡A¤j¤p¬°·sªºªø¼e
+	im3.create(im2.rows, im2.cols, CV_8UC3); //å»ºç«‹ä¸€å€‹è·Ÿim2ä¸€æ¨£å¤§å°çš„im3
+	im3.setTo(0); //im3åº•è‰²è¨­æˆé»‘è‰²
+	resize(im1, roi, Size(new_cols, new_rows)); //resize im1åˆ°roiï¼Œå¤§å°ç‚ºæ–°çš„é•·å¯¬
 
-	int position_x = (im2.cols / 2) - (roi.cols / 2); //­pºâ­n¶K¤Jªº¹Ï¤ùªº¥ª¤W¨¤ªºx®y¼Ğ
-	int position_y = (im2.rows / 2) - (roi.rows / 2); //­pºâ­n¶K¤Jªº¹Ï¤ùªº¥ª¤W¨¤ªºy®y¼Ğ
+	int position_x = (im2.cols / 2) - (roi.cols / 2); //è¨ˆç®—è¦è²¼å…¥çš„åœ–ç‰‡çš„å·¦ä¸Šè§’çš„xåº§æ¨™
+	int position_y = (im2.rows / 2) - (roi.rows / 2); //è¨ˆç®—è¦è²¼å…¥çš„åœ–ç‰‡çš„å·¦ä¸Šè§’çš„yåº§æ¨™
 
-	Rect roi_rect = Rect(position_x, position_y, roi.cols, roi.rows); //«Å§i¤@­ÓRectÅÜ¼Æ¡A©ñ¤J¥ª¤W¨¤ªºx, y®y¼Ğ¡A¥H¤Î¹Ï¤ù­nªºªø¸ò¼e
-	roi.copyTo(im3(roi_rect)); //±Nroi¼v¹³copy¨ìim3ªº¹ïÀ³¦ì¸m
+	Rect roi_rect = Rect(position_x, position_y, roi.cols, roi.rows); //å®£å‘Šä¸€å€‹Rectè®Šæ•¸ï¼Œæ”¾å…¥å·¦ä¸Šè§’çš„x, yåº§æ¨™ï¼Œä»¥åŠåœ–ç‰‡è¦çš„é•·è·Ÿå¯¬
+	roi.copyTo(im3(roi_rect)); //å°‡roiå½±åƒcopyåˆ°im3çš„å°æ‡‰ä½ç½®
 
-	addWeighted(im3, max(1, slider1)/100.0, im2, 1- max(1, slider1) / 100.0, 0.0, dst); //°µ¹Ï¤ù¿Ä¦X
+	addWeighted(im3, max(1, slider1)/100.0, im2, 1- max(1, slider1) / 100.0, 0.0, dst); //åšåœ–ç‰‡èåˆ
 
-	imshow("¿Ä¦X", dst); //±Nµ²ªG¹Ï§e²{¦b"¿Ä¦X"ªºµøµ¡¤W
+	imshow("èåˆ", dst); //å°‡çµæœåœ–å‘ˆç¾åœ¨"èåˆ"çš„è¦–çª—ä¸Š
 }
 
 int main(int, char** argv)
 {
 
-	im1.create(400, 400, CV_8UC3); //«Ø¥ß¤@­Ó400*400ªºim1
-	im1.setTo(0); //im1©³¦â³]¦¨¶Â¦â
-	im2 = imread("data/2_L.jpg", 1); //
+	im1.create(400, 400, CV_8UC3); //å»ºç«‹ä¸€å€‹400*400çš„im1
+	im1.setTo(0); //im1åº•è‰²è¨­æˆé»‘è‰²
+	im2 = imread("data/baboon.jpg", 1); //
 
 	if (im1.empty()) cout << "Could not load image file" << endl;
 	else {
 
-		namedWindow("¤âÃ¸"); //©R¦W¤@­Óµøµ¡¬°"¤âÃ¸"
-		imshow("¤âÃ¸", im1); //¨q¥X¤âÃ¸µøµ¡
-		setMouseCallback("¤âÃ¸", onMouse); //«Ø¥ßsetMouseCallback
+		namedWindow("æ‰‹ç¹ª"); //å‘½åä¸€å€‹è¦–çª—ç‚º"æ‰‹ç¹ª"
+		imshow("æ‰‹ç¹ª", im1); //ç§€å‡ºæ‰‹ç¹ªè¦–çª—
+		setMouseCallback("æ‰‹ç¹ª", onMouse); //å»ºç«‹setMouseCallback
 
 		waitKey();
 	}
 
-	on_trackbar(0, 0); //ªì©l¤Æ"¿Ä¦X"µøµ¡
+	on_trackbar(0, 0); //åˆå§‹åŒ–"èåˆ"è¦–çª—
 
-	createTrackbar("¼v¹³¿Ä¦X", "¿Ä¦X", &slider1, 100, on_trackbar); //«Ø¥ß²Ä¤@­Ótrackbar¡A±±¨î¼v¹³¿Ä¦X
-	createTrackbar("¤j¤p", "¿Ä¦X", &slider2, 100, on_trackbar); //«Ø¥ß²Ä¤G­Ótrackbar¡A±±¨î¤j¤p
+	createTrackbar("å½±åƒèåˆ", "èåˆ", &slider1, 100, on_trackbar); //å»ºç«‹ç¬¬ä¸€å€‹trackbarï¼Œæ§åˆ¶å½±åƒèåˆ
+	createTrackbar("å¤§å°", "èåˆ", &slider2, 100, on_trackbar); //å»ºç«‹ç¬¬äºŒå€‹trackbarï¼Œæ§åˆ¶å¤§å°
 
-	waitKey(); //«ö¥ô·NÁäµ²§ô
+	waitKey(); //æŒ‰ä»»æ„éµçµæŸ
 
 	return 0;
 }
