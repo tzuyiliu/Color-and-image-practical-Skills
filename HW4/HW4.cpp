@@ -1,33 +1,33 @@
-/*§@·~4: ¤HÁy°Ï°ì³B²z*/
+/*ä½œæ¥­4: äººè‡‰å€åŸŸè™•ç†*/
 #include "opencv2/opencv.hpp"
 #include <iostream>
 #include <time.h>
 
-using namespace cv; //«Å§i opencv ¨ç¦¡®wªº©R¦WªÅ¶¡
-using namespace std; //«Å§i C++¨ç¦¡®wªº©R¦WªÅ¶¡
+using namespace cv; //å®£å‘Š opencv å‡½å¼åº«çš„å‘½åç©ºé–“
+using namespace std; //å®£å‘Š C++å‡½å¼åº«çš„å‘½åç©ºé–“
 
 /** Function Headers */
-void detectAndDisplay(void); //°»´ú¤HÁyªº¨ç¦¡«Å§i
+void detectAndDisplay(void); //åµæ¸¬äººè‡‰çš„å‡½å¼å®£å‘Š
 
 /** Global variables */
-String face_cascade_name = "data/haarcascade_frontalface_alt.xml";//¥¿­±¤HÁyÂr¥¬°»´ú°V½m¼Æ¾Ú
-//©ñ±M®×¤U¡G"haarcascade_frontalface_alt.xml¡¨(¸òslnÀÉ©ñ¤@°_)
-//¬Û¹ï¸ô®|¡G"data/haarcascade_frontalface_alt.xml¡¨(©ñ¦b¤U¤@¼hªºdataÀÉ®×§¨)
-//µ´¹ï¸ô®|¡G"D: / AAA / BBB / CCC / haarcascade_frontalface_alt.xml¡¨(¥ô·N¦ì¸m)
+String face_cascade_name = "data/haarcascade_frontalface_alt.xml";//æ­£é¢äººè‡‰ç€‘å¸ƒåµæ¸¬è¨“ç·´æ•¸æ“š
+//æ”¾å°ˆæ¡ˆä¸‹ï¼š"haarcascade_frontalface_alt.xmlâ€(è·Ÿslnæª”æ”¾ä¸€èµ·)
+//ç›¸å°è·¯å¾‘ï¼š"data/haarcascade_frontalface_alt.xmlâ€(æ”¾åœ¨ä¸‹ä¸€å±¤çš„dataæª”æ¡ˆå¤¾)
+//çµ•å°è·¯å¾‘ï¼š"D: / AAA / BBB / CCC / haarcascade_frontalface_alt.xmlâ€(ä»»æ„ä½ç½®)
 
-CascadeClassifier face_cascade; //«Ø¥ßÂr¥¬¤ÀÃş¾¹ª«¥ó
+CascadeClassifier face_cascade; //å»ºç«‹ç€‘å¸ƒåˆ†é¡å™¨ç‰©ä»¶
 
-Mat im; //¿é¤J¼v¹³
-int option = 0; //¹w³]¿ï¶µ
-int width, height; //«Å§iµø°Tªºªø¼e
+Mat im; //è¼¸å…¥å½±åƒ
+int option = 0; //é è¨­é¸é …
+int width, height; //å®£å‘Šè¦–è¨Šçš„é•·å¯¬
 
-//«Å§i­I´º¹Ï¥H¤Î­I´ºªºROI
+//å®£å‘ŠèƒŒæ™¯åœ–ä»¥åŠèƒŒæ™¯çš„ROI
 Mat background, background_ROI;
 
-//©w¸q·Æ¹«¤ÏÀ³¨ç¦¡ mouse_callback
+//å®šç¾©æ»‘é¼ åæ‡‰å‡½å¼ mouse_callback
 static void mouse_callback(int event, int x, int y, int, void *)
 {
-	// ·í·Æ¹««ö¤U¥ªÁä¡A®Ú¾ÚÂI¿ïªº(x,y)¦ì¸m¡A±o¨ì¿ï¶µ (option) ¼Æ­È 
+	// ç•¶æ»‘é¼ æŒ‰ä¸‹å·¦éµï¼Œæ ¹æ“šé»é¸çš„(x,y)ä½ç½®ï¼Œå¾—åˆ°é¸é … (option) æ•¸å€¼ 
 	if (event == EVENT_LBUTTONDOWN)
 	{
 		cout << x << " " << y << endl;
@@ -53,47 +53,47 @@ static void mouse_callback(int event, int x, int y, int, void *)
  */
 int main(void)
 {
-	VideoCapture cap("data/sleepy.mp4"); //Åª¨ú¼v¤ù©Î¬Û¾÷
+	VideoCapture cap("data/sleepy.mpg"); //è®€å–å½±ç‰‡æˆ–ç›¸æ©Ÿ
 	//VideoCapture cap(0);
-	//©ñ±M®×¤U¡G"sleepy.mp4¡¨(¸òslnÀÉ©ñ¤@°_)
-	//¬Û¹ï¸ô®|¡G"data/sleepy.mp4¡¨(©ñ¦b¤U¤@¼hªºdataÀÉ®×§¨)
-	//µ´¹ï¸ô®|¡G"D: / AAA / BBB / CCC / sleepy.mp4¡¨(¥ô·N¦ì¸m)
+	//æ”¾å°ˆæ¡ˆä¸‹ï¼š"sleepy.mpgâ€(è·Ÿslnæª”æ”¾ä¸€èµ·)
+	//ç›¸å°è·¯å¾‘ï¼š"data/sleepy.mpgâ€(æ”¾åœ¨ä¸‹ä¸€å±¤çš„dataæª”æ¡ˆå¤¾)
+	//çµ•å°è·¯å¾‘ï¼š"D: / AAA / BBB / CCC / sleepy.mpgâ€(ä»»æ„ä½ç½®)
 
-	if (!cap.isOpened()) return 0; //¤£¯àÅªµø°Tªº³B²z
+	if (!cap.isOpened()) return 0; //ä¸èƒ½è®€è¦–è¨Šçš„è™•ç†
 
-	//«e³B²z
-	//Åª¨úµø°Tªº¼e width
+	//å‰è™•ç†
+	//è®€å–è¦–è¨Šçš„å¯¬ width
 	width = cap.get(CAP_PROP_FRAME_WIDTH);
-	//Åª¨úµø°Tªº°ª height
+	//è®€å–è¦–è¨Šçš„é«˜ height
 	height = cap.get(CAP_PROP_FRAME_HEIGHT);
-	//Åã¥Üµø°Tªº¼e width
+	//é¡¯ç¤ºè¦–è¨Šçš„å¯¬ width
 	cout << width << endl;
-	//Åã¥Üµø°Tªº°ª height
+	//é¡¯ç¤ºè¦–è¨Šçš„é«˜ height
 	cout << height << endl;
 
-	//¨ú±o²Ä¤@´V¼v¹³·í§@­I´º¹Ï
+	//å–å¾—ç¬¬ä¸€å¹€å½±åƒç•¶ä½œèƒŒæ™¯åœ–
 	cap >> background;
 	
 
-	//¶×¤J¤HÁyÂr¥¬°»´ú°V½m¼Æ¾Ú
+	//åŒ¯å…¥äººè‡‰ç€‘å¸ƒåµæ¸¬è¨“ç·´æ•¸æ“š
 	if (!face_cascade.load(face_cascade_name)) { printf("--(!)Error loading face cascade\n"); waitKey(0); return -1; };
 
-	while (char(waitKey(1)) != 27 && cap.isOpened()) //·íÁä½L¨S«ö Esc¡A¥H¤Îµø°Tª«¥ó¦¨¥\¶}±Ò®É¡A«ùÄò°õ¦æ while °j°é
+	while (char(waitKey(1)) != 27 && cap.isOpened()) //ç•¶éµç›¤æ²’æŒ‰ Escï¼Œä»¥åŠè¦–è¨Šç‰©ä»¶æˆåŠŸé–‹å•Ÿæ™‚ï¼ŒæŒçºŒåŸ·è¡Œ while è¿´åœˆ
 	{
-		cap >> im; //§ì¨úµø°Tªºµe­±
-		if (im.empty()) //¦pªG¨S§ì¨ì µe­±
+		cap >> im; //æŠ“å–è¦–è¨Šçš„ç•«é¢
+		if (im.empty()) //å¦‚æœæ²’æŠ“åˆ° ç•«é¢
 		{
-			printf(" --(!) No captured im -- Break!");  //Åã¥Ü¿ù»~°T®§
+			printf(" --(!) No captured im -- Break!");  //é¡¯ç¤ºéŒ¯èª¤è¨Šæ¯
 			break;
 		}
-		//©w¸qµøµ¡¦WºÙ namedWindow
+		//å®šç¾©è¦–çª—åç¨± namedWindow
 		namedWindow("window");
 		imshow("window", im);
 
-		//³]©w·Æ¹«¤ÏÀ³¨ç¦¡ setMouseCallback
+		//è¨­å®šæ»‘é¼ åæ‡‰å‡½å¼ setMouseCallback
 		setMouseCallback("window", mouse_callback);
 
-		/*°»´ú¤HÁy¡A¨ÃÅã¥ÜAR¹Ï¹³¿Ä¦Xµ²ªG*/
+		/*åµæ¸¬äººè‡‰ï¼Œä¸¦é¡¯ç¤ºARåœ–åƒèåˆçµæœ*/
 		detectAndDisplay();
 	}
 	return 0;
@@ -102,17 +102,17 @@ int main(void)
 /** @function detectAndDisplay */
 void detectAndDisplay(void)
 {
-	/*¤HÁy°»´ú³¡¤À*/
-	vector<Rect> faces; //«Ø¥ß¤HÁyROI ¦V¶q
-	Mat im_gray; //¦Ç¶¥¼v¹³ª«¥ó
+	/*äººè‡‰åµæ¸¬éƒ¨åˆ†*/
+	vector<Rect> faces; //å»ºç«‹äººè‡‰ROI å‘é‡
+	Mat im_gray; //ç°éšå½±åƒç‰©ä»¶
 
-	cvtColor(im, im_gray, COLOR_BGR2GRAY); //±m¦â¼v¹³Âà¦Ç¶¥
-	equalizeHist(im_gray, im_gray); //¦Ç¶¥­È¤è¹Ïµ¥¤Æ(¹ï¤ñ¦Û°Ê¼W±j)¡C­Yµø°T«~½è¦n¡A¥i¤£¥Î
+	cvtColor(im, im_gray, COLOR_BGR2GRAY); //å½©è‰²å½±åƒè½‰ç°éš
+	equalizeHist(im_gray, im_gray); //ç°éšå€¼æ–¹åœ–ç­‰åŒ–(å°æ¯”è‡ªå‹•å¢å¼·)ã€‚è‹¥è¦–è¨Šå“è³ªå¥½ï¼Œå¯ä¸ç”¨
 
-	//¤HÁyÂr¥¬°»´ú
+	//äººè‡‰ç€‘å¸ƒåµæ¸¬
 	face_cascade.detectMultiScale(im_gray, faces, 1.1, 4, 0, Size(80, 80));
 
-	//«Å§i°µ¨¤ÂI°»´ú»İ­nªºÅÜ¼Æ
+	//å®£å‘Šåšè§’é»åµæ¸¬éœ€è¦çš„è®Šæ•¸
 	vector<Point2f> corners;
 	double qualityLevel = 0.01;
 	double minDistance = 10;
@@ -122,18 +122,18 @@ void detectAndDisplay(void)
 	int maxCorners = 20;
 	int r = 4;
 
-	//«Å§i¤@­ÓÀH¾÷ªº¼Æ¦r¥Í¦¨¾¹
+	//å®£å‘Šä¸€å€‹éš¨æ©Ÿçš„æ•¸å­—ç”Ÿæˆå™¨
 	RNG rng(12345);
 
 	
 
-	//Àò±o³Ì¤j¤HÁyªº ROI¼Æ¾Ú
+	//ç²å¾—æœ€å¤§äººè‡‰çš„ ROIæ•¸æ“š
 	if (faces.size() > 0) {
 		int largest_area = -999;
 		int largest_i;
-		for (int i = 0; i < faces.size(); i++) //¥Î°j°éÅª¨ú©Ò¦³¤HÁy ROI
+		for (int i = 0; i < faces.size(); i++) //ç”¨è¿´åœˆè®€å–æ‰€æœ‰äººè‡‰ ROI
 		{
-			//©w¸q¼v¹³¤¤ªº ROI
+			//å®šç¾©å½±åƒä¸­çš„ ROI
 			if (largest_area < faces[i].height)
 			{
 				largest_area = faces[i].height;
@@ -141,16 +141,16 @@ void detectAndDisplay(void)
 			}
 		}
 
-		Rect faceROI = faces[largest_i]; //±N³Ì¤j¤HÁyªº ROI¼Æ¾Ú¦s¤J faceROI
+		Rect faceROI = faces[largest_i]; //å°‡æœ€å¤§äººè‡‰çš„ ROIæ•¸æ“šå­˜å…¥ faceROI
 
-		// µy¬°©ñ¤jROI¡A¨Ï·sÁy¯à°÷§¹¾ãÂĞ»\µø°T¤¤ªº¤HÁy(¥i¤£°µ)
+		// ç¨ç‚ºæ”¾å¤§ROIï¼Œä½¿æ–°è‡‰èƒ½å¤ å®Œæ•´è¦†è“‹è¦–è¨Šä¸­çš„äººè‡‰(å¯ä¸åš)
 		int d = 25;
 		faceROI.x = faceROI.x - d;
 		faceROI.y = faceROI.y - d;
 		faceROI.width = faceROI.width + 2 * d;
 		faceROI.height = faceROI.height + 2 * d;
 
-		//Á×§KfaceROI¶W¥Xµe­±
+		//é¿å…faceROIè¶…å‡ºç•«é¢
 		if (faceROI.y < 0)
 			faceROI.y = 0;
 		if (faceROI.y > height)
@@ -165,68 +165,68 @@ void detectAndDisplay(void)
 			faceROI.width = width;
 
 
-		// Ã¸»s¤HÁy°Ï°ì¯x§Î®Ø
+		// ç¹ªè£½äººè‡‰å€åŸŸçŸ©å½¢æ¡†
 		Point leftTop(faceROI.x, faceROI.y);
 		Point rightButtom(faceROI.x + faceROI.width, faceROI.y + faceROI.height);
 		rectangle(im, leftTop, rightButtom, CV_RGB(255, 0, 0), 2);
 		putText(im, "XXXXXXXXX", Point(faceROI.x, faceROI.y - 15), FONT_HERSHEY_COMPLEX, 0.8, CV_RGB(255, 0, 0), 2);
 
 
-		//Ã¸»swindow¤U¤èªº¿ï¶µ¤å¦r
+		//ç¹ªè£½windowä¸‹æ–¹çš„é¸é …æ–‡å­—
 		putText(im, "Skin", Point(50, height-50), FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 255, 0), 2);
 		putText(im, "Corners", Point(226, height - 50), FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 255, 0), 2);
 		putText(im, "Disappear", Point(452, height - 50), FONT_HERSHEY_COMPLEX, 1, CV_RGB(255, 255, 0), 2);
 
 
-		//«Å§iHSV¥­­±¥H¤Î½Õ¾ã½§¦âªºmask
+		//å®£å‘ŠHSVå¹³é¢ä»¥åŠèª¿æ•´è†šè‰²çš„mask
 		Mat im_HSV, skin_mask;
 		Mat element = getStructuringElement(MORPH_ELLIPSE, Size(3, 3));
 
-		//±N¿ëÃÑ¬°Áy³¡ªº°Ï©Ç°µ-100ªº³B²z½Æ»sµ¹new_face_ROI
+		//å°‡è¾¨è­˜ç‚ºè‡‰éƒ¨çš„å€æ€ªåš-100çš„è™•ç†è¤‡è£½çµ¦new_face_ROI
 		Mat new_face_ROI = im(faceROI) - 100;
 
-		//«Å§i¥Î¨Ó½Æ»s¤HÁy°Ï¶ô¡A¥H¤Î±N¨äÂà¬°¦Ç¶¥ªºMat
+		//å®£å‘Šç”¨ä¾†è¤‡è£½äººè‡‰å€å¡Šï¼Œä»¥åŠå°‡å…¶è½‰ç‚ºç°éšçš„Mat
 		Mat copy, copy_gray;
 
 
-		//®Ú¾Ú option ¿ï¶µ¡A³B²zROI¼v¹³
+		//æ ¹æ“š option é¸é …ï¼Œè™•ç†ROIå½±åƒ
 		switch (option) {
 		case 1:
-			//±NÁy³¡°Ï¶ôÂà¦¨HSV
+			//å°‡è‡‰éƒ¨å€å¡Šè½‰æˆHSV
 			cvtColor(im(faceROI), im_HSV, COLOR_BGR2HSV);
-			//±NHSV¦b(0, 40, 40)¨ì(50, 180, 240)°Ï¶¡ªºpixel³]¬°1¨ä¥L³]¬°0 ¦s¤Jskin_mask
+			//å°‡HSVåœ¨(0, 40, 40)åˆ°(50, 180, 240)å€é–“çš„pixelè¨­ç‚º1å…¶ä»–è¨­ç‚º0 å­˜å…¥skin_mask
 			inRange(im_HSV, Scalar(0, 40, 40), Scalar(50, 180, 240), skin_mask);
-			//±N½§¦â¾B¸n¼v¹³¿±µÈ
+			//å°‡è†šè‰²é®ç½©å½±åƒè†¨è„¹
 			dilate(skin_mask, skin_mask, element); 
-			//±N½§¦â¾B¸n¼v¹³»G»k
+			//å°‡è†šè‰²é®ç½©å½±åƒè…è•
 			erode(skin_mask, skin_mask, element); 
-			//§Q¥Îskin_mask±N·s½Õ¾ãªºÁy½Æ»sµ¹­ì¥»ªºimageªº¹ïÀ³°Ï¶ô
+			//åˆ©ç”¨skin_maskå°‡æ–°èª¿æ•´çš„è‡‰è¤‡è£½çµ¦åŸæœ¬çš„imageçš„å°æ‡‰å€å¡Š
 			new_face_ROI.copyTo(im(faceROI), skin_mask);
 			break;
 		case 2:
-			//±NÁy³¡°Ï¶ô½Æ»s¥X¨Óµ¹copy
+			//å°‡è‡‰éƒ¨å€å¡Šè¤‡è£½å‡ºä¾†çµ¦copy
 			copy = im(faceROI);
-			//±NcopyÂà¬°¦Ç¶¥
+			//å°‡copyè½‰ç‚ºç°éš
 			cvtColor(copy, copy_gray, COLOR_BGR2GRAY);
-			//·j´MÁy³¡¨¤ÂI®y¼Ğ¦s¤Jcorners°}¦C
+			//æœå°‹è‡‰éƒ¨è§’é»åº§æ¨™å­˜å…¥cornersé™£åˆ—
 			goodFeaturesToTrack(copy_gray, corners, maxCorners, qualityLevel, minDistance, Mat(), blockSize, useHarrisDetector, k);
-			//±N©Ò¦³ªº¨¤ÂI¥ÎÀH¾÷ªºÃC¦âµe¥X¶ê
+			//å°‡æ‰€æœ‰çš„è§’é»ç”¨éš¨æ©Ÿçš„é¡è‰²ç•«å‡ºåœ“
 			for (size_t i = 0; i < corners.size(); i++)
 			{
 				circle(copy, corners[i], r, Scalar(rng.uniform(0, 255), rng.uniform(0, 255), rng.uniform(0, 255)), -1, 8, 0);
 			}
 			break;
 		case 3:
-			//±N­I´ºªºROI³]¦¨­I´ºªºÁy³¡¿ëÃÑªº°Ï¶ô
+			//å°‡èƒŒæ™¯çš„ROIè¨­æˆèƒŒæ™¯çš„è‡‰éƒ¨è¾¨è­˜çš„å€å¡Š
 			background_ROI = background(faceROI);
-			//±N¦¹­I´ºROI½Æ»s¨ì­ì¹Ï¤¤
+			//å°‡æ­¤èƒŒæ™¯ROIè¤‡è£½åˆ°åŸåœ–ä¸­
 			background_ROI.copyTo(im(faceROI));
 			break;
 		default:
 			break;
 		}
 
-		//Åã¥Ü¼v¹³
+		//é¡¯ç¤ºå½±åƒ
 		imshow("window", im);
 	}
 }
