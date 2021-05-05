@@ -11,7 +11,7 @@
   &emsp; Demo連結: https://imgur.com/1JANKiT
 
 - HW3 C++ / openCV 的滑鼠與滑桿應用  
-  &emsp; Demo連結: 
+  &emsp; Demo連結: https://imgur.com/1XgkN0P
 
 - HW4 C++/ openCV 人臉區域處理  
   &emsp; Demo連結: 
