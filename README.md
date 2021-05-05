@@ -8,7 +8,7 @@
     輸出影片: https://imgur.com/2nOgRx6
 
 - HW2 製作處理影片的軟體(用Matlab APP Designer)
-    Demo連結: https://imgur.com/1JANKiT
+  Demo連結: https://imgur.com/1JANKiT
 
 - HW3 C++ / openCV 的滑鼠與滑桿應用
     Demo連結: 
