@@ -16,4 +16,5 @@
 - HW4 C++/ openCV 人臉區域處理 (1. 膚色區域調整 2. 角點偵測 3. 臉部消失)   
   &emsp; Demo連結: https://imgur.com/ZyiOomU
 
-- 期末報告 油畫特效和馬賽克展示
+- 期末報告 油畫特效和馬賽克展示  
+  原圖<img src="https://i.imgur.com/eF9R5Ue.png"> --> <img src="https://i.imgur.com/6o47OgR.png">
