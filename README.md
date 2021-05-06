@@ -13,7 +13,7 @@
 - HW3 C++ / openCV 的滑鼠與滑桿應用  
   &emsp; Demo連結: https://imgur.com/1XgkN0P
 
-- HW4 C++/ openCV 人臉區域處理 (1. 膚色區域調整 2. 角點偵測 3. 臉部消失) 
+- HW4 C++/ openCV 人臉區域處理 (1. 膚色區域調整 2. 角點偵測 3. 臉部消失)   
   &emsp; Demo連結: https://imgur.com/ZyiOomU
 
 - 期末報告 油畫特效和馬賽克展示
