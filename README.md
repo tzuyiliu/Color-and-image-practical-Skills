@@ -18,4 +18,4 @@
 
 - 期末報告 油畫特效和馬賽克展示  
   原圖<img height='300' width='300' src="https://i.imgur.com/Li8uERz.png"> --> 油畫效果<img height='300' width='300' src="https://i.imgur.com/H2ZQw1F.png">  
-  原圖<img height='300' width='300' src="https://i.imgur.com/eF9R5Ue.png"> --> 解馬賽克效果<img height='300' width='300' src="https://i.imgur.com/6o47OgR.png">  
+  原圖<img height='300' width='300' src="https://i.imgur.com/eF9R5Ue.png"> --> 馬賽克效果<img height='300' width='300' src="https://i.imgur.com/6o47OgR.png">  
